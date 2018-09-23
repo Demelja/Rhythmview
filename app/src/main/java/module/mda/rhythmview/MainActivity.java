@@ -11,7 +11,12 @@ import android.view.View;
 
 public class MainActivity extends Activity {
 
-	int sizeMin, sizeSquare, radiusCircle, xSTL, ySTL, xCTL, yCTL;
+	int sizeMin, sizeSquare, radiusCircle;
+	int xSTL, ySTL, xCTL, yCTL;
+	int xSTR, ySTR, xCTR, yCTR;
+	int xSBL, ySBL, xCBL, yCBL;
+	int xSBR, ySBR, xCBR, yCBR;
+	
 	int widthView, heightView;
 	
 	@Override
@@ -31,6 +36,23 @@ public class MainActivity extends Activity {
 		sizeSquare = Math.round(sizeMin * 45 / 100);
 		xSTL = Math.round(sizeMin * 5 / 100);
 		ySTL = Math.round(sizeMin * 5 / 100);
+		xSTR = xSTL + sizeSquare + 1;
+		ySTR = ySTL;
+		xSBL = xSTL;
+		ySBL = ySTL + sizeSquare + 1;
+		xSBR = xSTL + sizeSquare + 1;
+		ySBR = ySTL + sizeSquare + 1;
+		
+		radiusCircle = Math.round(sizeMin * 18 / 100);
+		xCTL = Math.round(sizeMin * 27.5f / 100);
+		yCTL = Math.round(sizeMin * 27.5f / 100);
+		xCTR = xCTL + sizeSquare + 1;
+		yCTR = yCTL;
+		xCBL = xCTL;
+		yCBL = yCTL + sizeSquare + 1;
+		xCBR = xCTL + sizeSquare + 1;
+		yCBR = yCTL + sizeSquare + 1;
+		
 		 
 	}
 
@@ -79,8 +101,22 @@ public class MainActivity extends Activity {
 			canvas.drawRect(rect, p);
 			
 			p.setColor(Color.GREEN);
-			squareTL.set(xSTL, ySTL, xSTL + sizeSquare, ySTL + sizeSquare);
-			canvas.drawRect(squareTL, p);
+			//squareTL.set(xSTL, ySTL, xSTL + sizeSquare, ySTL + sizeSquare);
+			//canvas.drawRect(squareTL, p);
+			
+			canvas.drawRect(xSTL, ySTL, xSTL + sizeSquare, ySTL + sizeSquare, p);
+	//		p.setColor(Color.BLUE);
+			canvas.drawRect(xSTR, ySTR, xSTR + sizeSquare, ySTR + sizeSquare, p);
+	//		p.setColor(Color.YELLOW);
+			canvas.drawRect(xSBL, ySBL, xSBL + sizeSquare, ySBL + sizeSquare, p);
+	//		p.setColor(Color.GRAY);
+			canvas.drawRect(xSBR, ySBR, xSBR + sizeSquare, ySBR + sizeSquare, p);
+			
+			p.setColor(Color.RED);
+			canvas.drawCircle(xCTL, yCTL, radiusCircle, p);
+			canvas.drawCircle(xCTR, yCTR, radiusCircle, p);
+			canvas.drawCircle(xCBL, yCBL, radiusCircle, p);
+			canvas.drawCircle(xCBR, yCBR, radiusCircle, p);
 			
 		}
 
