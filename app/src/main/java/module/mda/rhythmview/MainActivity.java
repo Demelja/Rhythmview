@@ -9,6 +9,93 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.View;
 
+/*
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+
+public class MainActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(new DrawView(this));
+	}
+
+	class DrawView extends SurfaceView implements SurfaceHolder.Callback {
+
+		private DrawThread drawThread;
+
+		public DrawView(Context context) {
+			super(context);
+			getHolder().addCallback(this);
+		}
+
+		@Override
+		public void surfaceChanged(SurfaceHolder holder, int format, int width,
+								   int height) {
+
+		}
+
+		@Override
+		public void surfaceCreated(SurfaceHolder holder) {
+			drawThread = new DrawThread(getHolder());
+			drawThread.setRunning(true);
+			drawThread.start();
+		}
+
+		@Override
+		public void surfaceDestroyed(SurfaceHolder holder) {
+			boolean retry = true;
+			drawThread.setRunning(false);
+			while (retry) {
+				try {
+					drawThread.join();
+					retry = false;
+				} catch (InterruptedException e) {
+				}
+			}
+		}
+
+		class DrawThread extends Thread {
+
+			private boolean running = false;
+			private SurfaceHolder surfaceHolder;
+
+			public DrawThread(SurfaceHolder surfaceHolder) {
+				this.surfaceHolder = surfaceHolder;
+			}
+
+			public void setRunning(boolean running) {
+				this.running = running;
+			}
+
+			@Override
+			public void run() {
+				Canvas canvas;
+				while (running) {
+					canvas = null;
+					try {
+						canvas = surfaceHolder.lockCanvas(null);
+						if (canvas == null)
+							continue;
+						canvas.drawColor(Color.GREEN);
+					} finally {
+						if (canvas != null) {
+							surfaceHolder.unlockCanvasAndPost(canvas);
+						}
+					}
+				}
+			}
+		}
+
+	}
+
+}
+
+*/
+
+
+
 public class MainActivity extends Activity {
 
 	int sizeMin, sizeSquare, radiusCircle;
@@ -107,15 +194,21 @@ public class MainActivity extends Activity {
 			canvas.drawRect(xSTL, ySTL, xSTL + sizeSquare, ySTL + sizeSquare, p);
 	//		p.setColor(Color.BLUE);
 			canvas.drawRect(xSTR, ySTR, xSTR + sizeSquare, ySTR + sizeSquare, p);
-	//		p.setColor(Color.YELLOW);
+			p.setColor(Color.YELLOW);
+			p.setStyle(Paint.Style.STROKE);
 			canvas.drawRect(xSBL, ySBL, xSBL + sizeSquare, ySBL + sizeSquare, p);
-	//		p.setColor(Color.GRAY);
+			p.setColor(Color.GRAY);
+			p.setStrokeWidth(1);
+			p.setStyle(Paint.Style.FILL_AND_STROKE);
 			canvas.drawRect(xSBR, ySBR, xSBR + sizeSquare, ySBR + sizeSquare, p);
 			
-			p.setColor(Color.RED);
+			p.setARGB(80, 108, 158, 200);
 			canvas.drawCircle(xCTL, yCTL, radiusCircle, p);
+			p.setStyle(Paint.Style.STROKE);
 			canvas.drawCircle(xCTR, yCTR, radiusCircle, p);
 			canvas.drawCircle(xCBL, yCBL, radiusCircle, p);
+			p.setStrokeWidth(2);
+			p.setStyle(Paint.Style.STROKE);
 			canvas.drawCircle(xCBR, yCBR, radiusCircle, p);
 			
 		}
