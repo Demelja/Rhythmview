@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Rhythmview</string>
+    <string name="app_name">Rhythm Indicator 4x4</string>
     <string name="hello_world">Hello world!</string>
 
 </resources>
